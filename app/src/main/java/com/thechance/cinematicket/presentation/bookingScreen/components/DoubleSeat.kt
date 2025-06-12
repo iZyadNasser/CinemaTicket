@@ -58,9 +58,9 @@ fun DoubleSeat(
                     )
                 )
                 .padding(
-                    start = 8.dp,
-                    end = 8.dp,
-                    bottom = 4.dp
+                    start = 12.dp,
+                    end = 12.dp,
+                    bottom = 8.dp
                 ),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
@@ -76,7 +76,7 @@ fun DoubleSeat(
 
         Box(
             modifier = modifier
-                .width(90.dp)
+                .width(110.dp)
                 .height(3.2.dp)
                 .background(Color.Black)
         )
@@ -100,7 +100,7 @@ private fun Seat(
         contentDescription = null,
         tint = backgroundColor,
         modifier = modifier
-            .size(32.dp)
+            .size(36.dp)
             .clickable { onClick() }
     )
 }

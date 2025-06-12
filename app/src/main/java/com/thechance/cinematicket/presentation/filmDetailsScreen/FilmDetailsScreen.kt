@@ -6,14 +6,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,18 +35,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.skydoves.cloudy.cloudy
 import com.thechance.cinematicket.R
+import com.thechance.cinematicket.presentation.filmDetailsScreen.components.BookingButton
+import com.thechance.cinematicket.presentation.filmDetailsScreen.components.GenreChip
 import com.thechance.cinematicket.presentation.filmDetailsScreen.components.PlayButton
 import com.thechance.cinematicket.presentation.filmDetailsScreen.components.RatingBox
 import com.thechance.cinematicket.presentation.filmDetailsScreen.components.RatingRow
+import com.thechance.cinematicket.presentation.filmDetailsScreen.components.TitleText
 import com.thechance.cinematicket.presentation.filmDetailsScreen.components.TopBar
 
 @Composable
@@ -64,7 +74,8 @@ fun FilmDetailsScreen(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .offset(y = (-65).dp)
+                    .height(480.dp)
+                    .offset(y = (-15).dp)
             )
 
             Column(
@@ -121,21 +132,64 @@ private fun MainContent(
                 .padding(bottom = 36.dp)
         )
 
+        TitleText(
+            title = uiState.title,
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+        )
+
+        FlowRow(
+            modifier = Modifier
+                .padding(bottom = 20.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            uiState.genres.forEach { genre ->
+                GenreChip(genre = genre)
+            }
+        }
+
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 32.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            contentPadding = PaddingValues(horizontal = 40.dp)
+        ) {
+
+            items(uiState.actors) {
+                Image(
+                    painter = painterResource(id = it),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(72.dp)
+                )
+            }
+        }
+
         Text(
-            text = uiState.title,
+            text = stringResource(uiState.description),
             color = Color.Black,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
             style = TextStyle(
                 fontWeight = FontWeight.Medium,
-                fontSize = 26.sp,
-                letterSpacing = 0.75.sp,
-                textAlign = TextAlign.Center
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+                lineHeight = 18.sp
             ),
             modifier = Modifier
                 .padding(
                     start = 44.dp,
                     end = 44.dp,
-                    bottom = 16.dp
+                    bottom = 38.dp
                 )
+        )
+
+        BookingButton(
+            modifier = Modifier
+                .padding(bottom = 48.dp)
         )
     }
 }

@@ -2,6 +2,7 @@ package com.thechance.cinematicket.presentation.bookingScreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,9 @@ import com.thechance.cinematicket.presentation.ui.theme.mainColor
 fun DoubleSeat(
     modifier: Modifier = Modifier,
     leftSelected: Boolean? = false,
-    rightSelect: Boolean? = false
+    rightSelect: Boolean? = false,
+    onLeftClick: () -> Unit,
+    onRightClick: () -> Unit
 ) {
     val borderColor = if (leftSelected == true && rightSelect == true) {
         mainColor.copy(alpha = 0.2f)
@@ -61,8 +64,14 @@ fun DoubleSeat(
                 ),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            Seat(selected = leftSelected)
-            Seat(selected = rightSelect)
+            Seat(
+                selected = leftSelected,
+                onClick = onLeftClick
+            )
+            Seat(
+                selected = rightSelect,
+                onClick = onRightClick
+            )
         }
 
         Box(
@@ -77,7 +86,8 @@ fun DoubleSeat(
 @Composable
 private fun Seat(
     modifier: Modifier = Modifier,
-    selected: Boolean? = false
+    selected: Boolean? = false,
+    onClick: () -> Unit
 ) {
     val backgroundColor = when (selected) {
         true -> mainColor
@@ -91,6 +101,7 @@ private fun Seat(
         tint = backgroundColor,
         modifier = modifier
             .size(32.dp)
+            .clickable { onClick() }
     )
 }
 
@@ -99,6 +110,8 @@ private fun Seat(
 private fun PreviewDoubleSeat() {
     DoubleSeat(
         leftSelected = true,
-        rightSelect = true
+        rightSelect = true,
+        onLeftClick = {},
+        onRightClick = {}
     )
 }

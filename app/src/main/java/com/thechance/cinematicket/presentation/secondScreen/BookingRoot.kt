@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen
+package com.thechance.cinematicket.presentation.secondScreen
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.compose.collectAsStateWithLifecycle

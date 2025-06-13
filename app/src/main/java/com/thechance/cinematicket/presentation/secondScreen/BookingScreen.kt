@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen
+package com.thechance.cinematicket.presentation.secondScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -31,11 +31,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.thechance.cinematicket.R
-import com.thechance.cinematicket.presentation.bookingScreen.components.AllSeatsSection
-import com.thechance.cinematicket.presentation.bookingScreen.components.CloseIcon
-import com.thechance.cinematicket.presentation.bookingScreen.components.DateCard
-import com.thechance.cinematicket.presentation.bookingScreen.components.IndicatorRow
-import com.thechance.cinematicket.presentation.bookingScreen.components.TimeCard
+import com.thechance.cinematicket.presentation.secondScreen.components.AllSeatsSection
+import com.thechance.cinematicket.presentation.secondScreen.components.CloseIcon
+import com.thechance.cinematicket.presentation.secondScreen.components.DateCard
+import com.thechance.cinematicket.presentation.secondScreen.components.IndicatorRow
+import com.thechance.cinematicket.presentation.secondScreen.components.TimeCard
 
 @Composable
 fun BookingScreen(

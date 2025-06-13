@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.filmDetailsScreen.components
+package com.thechance.cinematicket.presentation.firstScreen.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding

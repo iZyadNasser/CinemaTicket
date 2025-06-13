@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen
+package com.thechance.cinematicket.presentation.secondScreen
 
 data class BookingState(
     val seats: List<List<Boolean?>> = emptyList(),

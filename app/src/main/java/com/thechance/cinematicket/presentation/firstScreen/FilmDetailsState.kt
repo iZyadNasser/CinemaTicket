@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.filmDetailsScreen
+package com.thechance.cinematicket.presentation.firstScreen
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

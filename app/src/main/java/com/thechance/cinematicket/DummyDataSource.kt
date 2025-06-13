@@ -1,6 +1,7 @@
 package com.thechance.cinematicket
 
-import com.thechance.cinematicket.presentation.bookingScreen.SimpleDate
+import com.thechance.cinematicket.presentation.secondScreen.SimpleDate
+import com.thechance.cinematicket.presentation.thirdScreen.Movie
 
 object DummyDataSource {
     val seats = listOf(
@@ -55,4 +56,26 @@ object DummyDataSource {
     )
 
     val times = listOf("10:00", "12:30", "15:30", "18:30", "21:30", "23:30")
+
+    val movies = listOf(
+        Movie(
+            posterRes = R.drawable.im_morbius,
+            name = "Morbius",
+            duration = "2h 3m",
+            genres = listOf("Action", "Fantasy")
+
+        ),
+        Movie(
+            posterRes = R.drawable.im_fantastic_beasts,
+            name = "Fantastic Beasts: The Secrets of Dumbledore",
+            duration = "2h 23m",
+            genres = listOf("Adventure", "Fantasy")
+        ),
+        Movie(
+            posterRes = R.drawable.im_dr_strange,
+            name = "Dr. Strange",
+            duration = "1h 55m",
+            genres = listOf("Action", "Adventure")
+        )
+    )
 }

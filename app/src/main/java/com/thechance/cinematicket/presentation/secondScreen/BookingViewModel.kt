@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen
+package com.thechance.cinematicket.presentation.secondScreen
 
 import androidx.lifecycle.ViewModel
 import com.thechance.cinematicket.DummyDataSource

@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen.components
+package com.thechance.cinematicket.presentation.secondScreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.thechance.cinematicket.presentation.bookingScreen.SimpleDate
+import com.thechance.cinematicket.presentation.secondScreen.SimpleDate
 import com.thechance.cinematicket.presentation.common.applyIf
 
 @Composable

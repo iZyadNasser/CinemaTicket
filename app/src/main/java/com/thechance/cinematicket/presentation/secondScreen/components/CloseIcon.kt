@@ -1,7 +1,6 @@
-package com.thechance.cinematicket.presentation.filmDetailsScreen.components
+package com.thechance.cinematicket.presentation.secondScreen.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,20 +17,19 @@ import androidx.compose.ui.unit.dp
 import com.thechance.cinematicket.R
 
 @Composable
-fun PlayButton(modifier: Modifier = Modifier) {
+fun CloseIcon(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .clip(CircleShape)
-            .background(Color(0xFFFD5723))
-            .padding(12.dp)
-            .clickable { /*NOTHING*/ },
+            .background(Color.White.copy(alpha = 0.2f)),
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.ic_play),
+            imageVector = ImageVector.vectorResource(id = R.drawable.ic_close),
             contentDescription = null,
-            tint = Color.White,
+            tint = Color.Unspecified,
             modifier = Modifier
+                .padding(8.dp)
                 .size(32.dp)
         )
     }

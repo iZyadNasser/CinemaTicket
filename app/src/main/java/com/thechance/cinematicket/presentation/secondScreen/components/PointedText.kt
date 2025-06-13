@@ -1,4 +1,4 @@
-package com.thechance.cinematicket.presentation.bookingScreen.components
+package com.thechance.cinematicket.presentation.secondScreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

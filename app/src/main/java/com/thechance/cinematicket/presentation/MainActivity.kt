@@ -13,8 +13,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             // FilmDetailsScreen()
-            // BookingRoot()
-            HomeRoot()
+            BookingRoot()
+            // HomeRoot()
         }
     }
 }

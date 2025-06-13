@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -19,10 +20,11 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,8 +44,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.skydoves.cloudy.cloudy
 import com.thechance.cinematicket.R
+import com.thechance.cinematicket.presentation.common.GenreChip
+import com.thechance.cinematicket.presentation.common.TitleText
 import com.thechance.cinematicket.presentation.ui.theme.mainColor
 import kotlin.math.absoluteValue
 
@@ -59,24 +62,13 @@ fun HomeScreen(
             .background(Color.White)
 
     ) {
-        BottomBar(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(
-                    start = 28.dp,
-                    end = 28.dp,
-                    bottom = 16.dp
-                )
-                .navigationBarsPadding()
-        )
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
         ) {
             Box(
                 modifier = Modifier
-                    .blur(500.dp)
+                    .blur(300.dp)
                     .fillMaxSize()
             ) {
                 Image(
@@ -95,9 +87,11 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .statusBarsPadding()
+                    .verticalScroll(rememberScrollState())
                     .padding(
                         top = 44.dp
-                    )
+                    ),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Row(
                     modifier = Modifier
@@ -167,6 +161,7 @@ fun HomeScreen(
                     ),
                     pageSpacing = 32.dp,
                     modifier = Modifier.clip(RoundedCornerShape(20.dp))
+                        .padding(bottom = 32.dp)
                 ) { index ->
                     val pageOffset = (pagerState.currentPage - index) + pagerState.currentPageOffsetFraction
                     Image(
@@ -191,8 +186,65 @@ fun HomeScreen(
                             .clip(RoundedCornerShape(20.dp))
                     )
                 }
+
+                Row (
+                    modifier = Modifier
+                        .padding(bottom = 16.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .padding(
+                            horizontal = 8.dp,
+                            vertical = 4.dp
+                        ),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_time),
+                        contentDescription = null,
+                        tint = Color.Black.copy(alpha = 0.5f),
+                        modifier = Modifier
+                            .size(24.dp)
+                            .padding(end = 4.dp)
+                    )
+
+                    Text(
+                        text = uiState.movies[pagerState.currentPage].duration,
+                        color = Color.Black,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 14.sp
+                        )
+                    )
+                }
+
+                TitleText(
+                    title = uiState.movies[pagerState.currentPage].name,
+                    modifier = Modifier
+                        .padding(bottom = 16.dp)
+                )
+
+                FlowRow(
+                    modifier = Modifier
+                        .padding(bottom = 140.dp),
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    uiState.movies[pagerState.currentPage].genres.forEach { genre ->
+                        GenreChip(genre = genre)
+                    }
+                }
+
             }
         }
+
+        BottomBar(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(
+                    start = 28.dp,
+                    end = 28.dp,
+                    bottom = 16.dp
+                )
+                .navigationBarsPadding()
+        )
     }
 }
 
@@ -202,7 +254,8 @@ private fun BottomBar(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(Color.White),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

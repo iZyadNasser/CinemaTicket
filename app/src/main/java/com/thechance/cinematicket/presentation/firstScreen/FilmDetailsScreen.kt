@@ -37,10 +37,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.thechance.cinematicket.presentation.firstScreen.components.BookingButton
-import com.thechance.cinematicket.presentation.firstScreen.components.GenreChip
+import com.thechance.cinematicket.presentation.common.GenreChip
 import com.thechance.cinematicket.presentation.firstScreen.components.PlayButton
 import com.thechance.cinematicket.presentation.firstScreen.components.RatingRow
-import com.thechance.cinematicket.presentation.firstScreen.components.TitleText
+import com.thechance.cinematicket.presentation.common.TitleText
 import com.thechance.cinematicket.presentation.firstScreen.components.TopBar
 
 @Composable

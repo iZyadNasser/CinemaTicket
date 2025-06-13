@@ -3,6 +3,7 @@ package com.thechance.cinematicket.presentation.bookingScreen.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,22 +14,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.thechance.cinematicket.presentation.bookingScreen.SimpleDate
 import com.thechance.cinematicket.presentation.common.applyIf
 
 @Composable
-fun DateCard(
+fun TimeCard(
+    time: String,
     isSelected: Boolean,
-    date: SimpleDate,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Box(
         modifier = modifier
-            .clip(RoundedCornerShape(28.dp))
+            .clip(RoundedCornerShape(20.dp))
             .applyIf(isSelected) {
                 Modifier
                     .background(
@@ -43,40 +42,21 @@ fun DateCard(
                     .border(
                         width = 1.dp,
                         color = Color.Black.copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(28.dp)
+                        shape = RoundedCornerShape(20.dp)
                     )
             }
             .clickable { onClick() }
             .padding(
-                horizontal = 24.dp,
-                vertical = 16.dp
+                horizontal = 12.dp,
+                vertical = 12.dp
             ),
-        horizontalAlignment = Alignment.CenterHorizontally
+        contentAlignment = Alignment.Center
     ) {
         Text(
-            text = date.dayOfMonth.toString(),
+            text = time,
             color = if (!isSelected) Color.Black else Color.White,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        Text(
-            text = date.dayOfWeek,
-            color = if (!isSelected) Color.Black.copy(alpha = 0.5f) else Color.White.copy(alpha = 0.5f),
-
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
         )
     }
-}
-
-@Preview
-@Composable
-private fun PreviewDateCard() {
-    DateCard(
-        date = SimpleDate(
-            dayOfMonth = 14,
-            dayOfWeek = "Thu"
-        ),
-        isSelected = false,
-        onClick = {}
-    )
 }

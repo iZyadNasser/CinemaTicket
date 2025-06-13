@@ -17,15 +17,16 @@ fun IndicatorRow(modifier: Modifier = Modifier) {
     ) {
         PointedText(
             text = "Available",
-            color = Color.White.copy(alpha = 0.3f)
-        )
-        PointedText(
-            text = "Selected",
-            color = mainColor
+            color = Color.White
         )
         PointedText(
             text = "Taken",
             color = Color.White.copy(alpha = 0.2f)
         )
+        PointedText(
+            text = "Selected",
+            color = mainColor
+        )
+
     }
 }

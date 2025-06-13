@@ -28,7 +28,7 @@ fun PointedText(
     ) {
         Box(
             modifier = Modifier
-                .padding(end = 8.dp)
+                .padding(end = 4.dp)
                 .clip(CircleShape)
                 .size(16.dp)
                 .background(color)

@@ -17,7 +17,9 @@ class BookingViewModel: ViewModel(), BookingInteractionHandler {
 
     private fun loadSeats() {
         _state.value = _state.value.copy(
-            seats = DummyDataSource.seats
+            seats = DummyDataSource.seats,
+            dates = DummyDataSource.dates,
+            times = DummyDataSource.times
         )
     }
 
@@ -34,5 +36,19 @@ class BookingViewModel: ViewModel(), BookingInteractionHandler {
         }
     }
 
+    override fun onDateClick(date: SimpleDate) {
+        _state.update {
+            it.copy(
+                selectedDate = date
+            )
+        }
+    }
 
+    override fun onTimeClick(time: String) {
+        _state.update {
+            it.copy(
+                selectedTime = time
+            )
+        }
+    }
 }

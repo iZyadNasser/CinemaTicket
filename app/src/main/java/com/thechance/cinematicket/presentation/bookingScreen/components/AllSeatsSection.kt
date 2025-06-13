@@ -20,7 +20,6 @@ fun AllSeatsSection(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
     ) {
         TiltedScreen(
             modifier = Modifier

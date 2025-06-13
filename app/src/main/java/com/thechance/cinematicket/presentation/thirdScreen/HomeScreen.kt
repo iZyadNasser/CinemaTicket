@@ -28,8 +28,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -43,11 +45,11 @@ import androidx.compose.ui.unit.sp
 import com.skydoves.cloudy.cloudy
 import com.thechance.cinematicket.R
 import com.thechance.cinematicket.presentation.ui.theme.mainColor
+import kotlin.math.absoluteValue
 
 @Composable
 fun HomeScreen(
     uiState: HomeState,
-    interactionHandler: HomeInteractionHandler
 ) {
     val pagerState = rememberPagerState { uiState.movies.size }
 
@@ -74,18 +76,18 @@ fun HomeScreen(
         ) {
             Box(
                 modifier = Modifier
+                    .blur(500.dp)
                     .fillMaxSize()
-                    .cloudy(1500)
             ) {
                 Image(
                     painter = painterResource(
                         id = uiState.movies[pagerState.currentPage].posterRes
                     ),
                     contentDescription = uiState.selectedMovie?.name,
-                    contentScale = ContentScale.FillWidth,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxHeight(0.5f)
-                        .cloudy(1000)
+                        .fillMaxWidth()
                 )
             }
 
@@ -160,9 +162,13 @@ fun HomeScreen(
                     contentPadding = PaddingValues(
                         horizontal = 24.dp
                     ),
-                    pageSize = PageSize.Fixed(250.dp),
-                    pageSpacing = 44.dp
+                    pageSize = PageSize.Fixed(
+                        pageSize = 250.dp
+                    ),
+                    pageSpacing = 32.dp,
+                    modifier = Modifier.clip(RoundedCornerShape(20.dp))
                 ) { index ->
+                    val pageOffset = (pagerState.currentPage - index) + pagerState.currentPageOffsetFraction
                     Image(
                         painter = painterResource(
                             id = uiState.movies[index].posterRes
@@ -170,8 +176,18 @@ fun HomeScreen(
                         contentDescription = uiState.movies[index].name,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .width(250.dp)
-                            .height(350.dp)
+                            .width(
+                                width = 270.dp
+                            )
+                            .height(370.dp)
+                            .graphicsLayer {
+                                val scaleFactor = 1f - (0.2f * pageOffset.absoluteValue)
+
+                                scaleX = maxOf(0.8f, scaleFactor)
+                                scaleY = maxOf(0.8f, scaleFactor)
+
+                                alpha = maxOf(0.5f, scaleFactor)
+                            }
                             .clip(RoundedCornerShape(20.dp))
                     )
                 }
@@ -246,9 +262,6 @@ private fun BottomBar(
 @Composable
 private fun PreviewHomeScreen() {
     HomeScreen(
-        uiState = HomeState(),
-        interactionHandler = object : HomeInteractionHandler {
-            override fun getMovie(index: Int) {}
-        }
+        uiState = HomeState()
     )
 }

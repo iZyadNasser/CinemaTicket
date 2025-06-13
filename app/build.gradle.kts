@@ -59,4 +59,6 @@ dependencies {
 
     implementation(libs.compose.cloudy)
     implementation(libs.bundles.koin)
+    implementation(libs.haze)
+    implementation(libs.ui)
 }

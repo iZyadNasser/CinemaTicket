@@ -10,8 +10,7 @@ fun HomeRoot() {
     val uiState = homeViewModel.uiState.collectAsStateWithLifecycle()
 
     HomeScreen(
-        uiState = uiState.value,
-        interactionHandler = homeViewModel
+        uiState = uiState.value
     )
 
 }
